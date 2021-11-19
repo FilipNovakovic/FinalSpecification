@@ -11,7 +11,7 @@ public abstract class StorageSpecification {
          * Creates an empty folder that will be the root directory of the storage.
          * @param path The absolute path to the directory being created.
          */
-        abstract public boolean initializeStorage(String path); //++++++
+        abstract public boolean initializeStorage(String path);
 
         /**
          * Creates a user by super-user.
