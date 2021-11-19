@@ -4,9 +4,7 @@ package spec;
 import java.util.List;
 
 public abstract class StorageSpecification {
-//--------- znaci nemam to
-//******** znaci menjao sam nesto malo
-//+++++++++ znaci imamo isto
+
 
         //SUPERKORISNIK
         /**
@@ -20,6 +18,7 @@ public abstract class StorageSpecification {
          * Only the super user has the privilege to use this function.
          * @param username Username of the user you want to create.
          * @param password Password of the user you want to create.
+         * @param privilege Privilage that we want to set to the user.
          */
         public abstract void addUser(String username, String password, String  privilege);
 
@@ -27,39 +26,41 @@ public abstract class StorageSpecification {
          * Sets user privilege.
          * Only the super user has the privilege to use this function.
          * @param username The username of the user for whom the privilege is being changed.
+         * @param password The password of the user for whom the privilege is being changed.
          * @param privilege The username of the user for whom the privilege is being changed.
          */
-        abstract public void setPrivilege(String username, String privilege);
+        abstract public void setPrivilege(String username,String password, String privilege);
 
         /**
          * Deletes a user by super-user.
          * Only the super user has the privilege to use this function.
          * @param username Username of the user you want to delete.
          */
-        public abstract void deleteUserBySuperUser(String username);//Moje ima jedan delete samo rposledis koji je username i koji je password i on izbrise
+        public abstract void deleteUserBySuperUser(String username);
 
         /**
          * Deletes a user by himself.
          * @param username Your username.
          * @param password Your password.
          */
-        public abstract void deleteUserByHimself(String username, String password);//Moje ima jedan delete samo rposledis koji je username i koji je password i on izbrise
+        public abstract void deleteUserByHimself(String username, String password);
 
         /**
          * Connects the user to the storage.
          * @param username Username of the user who wants to connect to the storage.
          * @param password Password of the user who wants to connect to the storage.
          */
-        abstract public void connectUser(String username, String password);//+++++++++++++++++++++++++++
+        abstract public void connectUser(String username, String password);
 
         /**
          * Disconnects the user from the storage.
          */
-        abstract public void disconnectUser();//+++++++++++++++++++++++++++++++++
+        abstract public void disconnectUser();
 
         /**
          * Checks user privilege.
          * @param username Username of the user for whom the privilege is being checked.
+         * @param privilage Privilage which we want to check.
          */
         abstract public int checkPrivilege(String username,String privilage);
 
@@ -74,33 +75,33 @@ public abstract class StorageSpecification {
          * @param path The path to the directory you want to create.
          *  @param name The name that we want to set to this directory.
          */
-        public abstract void createDirectory(String name,String path); //*******************************************
+        public abstract void createDirectory(String name,String path);
 
 
         /**
          * View directories in a exact directory.
          * @param path The path of the directory you are viewing.
          */
-        public abstract List<String> listDirectories(String path);//++++++++++++++++++++++++
+        public abstract List<String> listDirectories(String path);
 
         /**
          * View directories in a exact directory filter by creation time.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> listDirectoriesByCreationTime(String path);//-----------------
+        public abstract List<String> listDirectoriesByCreationTime(String path);
 
         /**
          * View directories in a exact directory filter by modification time.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> listDirectoriesByModificationTime(String path);//-----------------------
+        public abstract List<String> listDirectoriesByModificationTime(String path);
 
 
         /**
          * View directories in a exact directory filter sorted by name.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> listDirectoriesSortedByName(String path); //+++++++++++++++++++++++++++++++++
+        public abstract List<String> listDirectoriesSortedByName(String path);
 
         //FAJLOVI
 
@@ -108,102 +109,96 @@ public abstract class StorageSpecification {
          * Saves a file.
          * @param path The path to the file you want to save.
          */
-        public abstract void saveFile(String path);//---------------------------------------
+        public abstract void saveFile(String path);
 
         /**
          * Deletes a file.
          * @param path The path to the file you want to delete.
          */
-        public abstract void deleteFile(String path);//+++++++++++++++++++++++++++++++++++++++
+        public abstract void deleteFile(String path);
 
         /**
          * Downloads a file.
          * @param path The path to the file you want to download.
          */
-        public abstract void downloadsFile(String path);//-------------------------------------
+        public abstract void downloadsFile(String path);
 
         /**
          * View files in a exact directory.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> listFiles(String path);//+++++++++++++++++++++++++++
+        public abstract List<String> listFiles(String path);
 
         /**
          * View files in a exact directory filter by extension.
          ** @param path The name of the directory in which you are searching.
          * @param extension The name of extension that we want to get.
          */
-        public abstract List<String> listFilesByExtension(String extension,String path);   //treba nam i drugi parametar jer nam treba da prosledimo koju extensiju hocemo da vratimo
+        public abstract List<String> listFilesByExtension(String extension,String path);
 
         /**
          * View files in a exact directory filter by creation time.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> listFilesByCreationTime(String path); //-----------
+        public abstract List<String> listFilesByCreationTime(String path);
 
         /**
          * View files in a exact directory filter by modification time.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> listFilesByModificationTime(String path);//-------------
+        public abstract List<String> listFilesByModificationTime(String path);
 
         /**
          * Sort files in a exact directory filter by name.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> sortFilesByName(String path);//++++++++++++++++++++++++++
+        public abstract List<String> sortFilesByName(String path);
 
         /**
          * Sort files in a exact directory filter by creation time.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> sortFilesByCreationTime(String path);//----------------------
+        public abstract List<String> sortFilesByCreationTime(String path);
 
         /**
          * Sort files in a exact directory filter by modification time.
          * @param path The name of the directory in which you are searching.
          */
-        public abstract List<String> sortFilesByModificationTime(String path);//----------------------------
-
-
-        //-----------Metode koje ja imam a vezane su za pregled fajlova i foldera tj (Listovanje)----------------------
-
+        public abstract List<String> sortFilesByModificationTime(String path);
 
         /**
-         * View all files.
+         * View all files from storage.
          */
-        public abstract List<String> listAllFiles();//OVA OVDE METODA VRACA SVE FAJLOVE I FOLDERE koji se nalaze na Drive      IZbrisi------------------------------
+        public abstract List<String> listAllFiles();
 
 
 
         /**
-         * View all files sorted by name.
+         * View all files sorted by name from storage.
          *
          */
-        public abstract List<String> listAllFilesSortedByName();//OVA METODA VRACA SVE FAJLOVE SORTIRANE PO IMENU
+        public abstract List<String> listAllFilesSortedByName();
 
 
         /**
-         * View all files by exact name.
+         * View all files by exact name from storage.
          * @param name The name of files that we want to list.
          */
-        public abstract List<String> listAllFilesByName(String name);   //OVA METODA VRACA SVE FAJLOVE SA IMENOM NAME
+        public abstract List<String> listAllFilesByName(String name);
 
         /**
-         * View all files by exact extension.
+         * View all files by exact extension from storage.
          * @param name The name of file extension that we want file to list.
          */
-        public abstract List<String> listAllFilesByExt(String name); //OVA METODA VRACA SVE FAJLOVE SA EXT name
+        public abstract List<String> listAllFilesByExt(String name);
 
-
-        //---------------------------------------------------------------------------------------------------------------
 
         /**
          * Moves files from one path to another.
          * @param filesName The names of the files you want to move.
          * @param path The path of the directory to which you want to move the files.
          */
-        public abstract void moveFiles(String filesName, String path); //Meni ovde prima String umesto listu stringova          //-----------------Menjam list string u string
+        public abstract void moveFiles(String filesName, String path);
 
 
 
@@ -216,16 +211,16 @@ public abstract class StorageSpecification {
          * @param path The path of the directory where you want to put all created directories.
          * @param name The names of the directories you want to create.
          */
-        public abstract void createDirectoryByPattern(String name,String path);//**********************************
+        public abstract void createDirectoryByPattern(String name,String path);
 
         /**
          * View files in a exact directory.
          * @param path The path of the directory where you want to put all created files.
          * @param name The name of files you want to create.
          */
-        public abstract void createFileByPattern(String name,String path); //***********************************
+        public abstract void createFileByPattern(String name,String path);
 
-        //----------------------METODE KOJE JA IMAM A VEZAEN SU ZA PRAVLJENJE DIREKTORIJUMA I FAJLOVA KAO PATTERN--------------------
+
 
         /**
          * Create numbers of folders with default name Folder1,Folder2... .
@@ -242,7 +237,7 @@ public abstract class StorageSpecification {
         public abstract void createMoreFilesDrive(int number,String name);
 
 
-        //-------------------------------------------------------------------------------------------------------
+
         //KONFIGURACIJA SKLADISTA
 
         /**
