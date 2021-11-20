@@ -1,20 +1,20 @@
 package spec;
 
 public class Privilege {
-    private String privilage;
+    private int privilage;
 
-    public Privilege(String privilage) {
+    public Privilege(int privilage) {
         this.privilage = privilage;
     }
     public Privilege() {
 
     }
 
-    public String getPrivilage() {
+    public int getPrivilage() {
         return privilage;
     }
 
-    public void setPrivilage(String privilage) {
+    public void setPrivilage(int privilage) {
         this.privilage = privilage;
     }
 

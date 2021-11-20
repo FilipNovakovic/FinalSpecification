@@ -5,7 +5,14 @@ import java.util.List;
 
 public abstract class StorageSpecification {
 
+        protected String fileName;
 
+        public StorageSpecification() {
+        }
+
+        public void setFileName(String fileName) {
+                this.fileName = fileName;
+        }
         //SUPERKORISNIK
         /**
          * Creates an empty folder that will be the root directory of the storage.
@@ -20,7 +27,7 @@ public abstract class StorageSpecification {
          * @param password Password of the user you want to create.
          * @param privilege Privilage that we want to set to the user.
          */
-        public abstract void addUser(String username, String password, String  privilege);
+        public abstract void addUser(String username, String password, int  privilege);
 
         /**
          * Sets user privilege.
@@ -29,7 +36,7 @@ public abstract class StorageSpecification {
          * @param password The password of the user for whom the privilege is being changed.
          * @param privilege The username of the user for whom the privilege is being changed.
          */
-        abstract public void setPrivilege(String username,String password, String privilege);
+        abstract public void setPrivilege(String username,String password, int privilege);
 
         /**
          * Deletes a user by super-user.
@@ -62,7 +69,7 @@ public abstract class StorageSpecification {
          * @param username Username of the user for whom the privilege is being checked.
          * @param privilage Privilage which we want to check.
          */
-        abstract public int checkPrivilege(String username,String privilage);
+        abstract public int checkPrivilege(String username,int privilage);
 
 
 
@@ -83,18 +90,6 @@ public abstract class StorageSpecification {
          * @param path The path of the directory you are viewing.
          */
         public abstract List<String> listDirectories(String path);
-
-        /**
-         * View directories in a exact directory filter by creation time.
-         * @param path The name of the directory in which you are searching.
-         */
-        public abstract List<String> listDirectoriesByCreationTime(String path);
-
-        /**
-         * View directories in a exact directory filter by modification time.
-         * @param path The name of the directory in which you are searching.
-         */
-        public abstract List<String> listDirectoriesByModificationTime(String path);
 
 
         /**
@@ -154,17 +149,7 @@ public abstract class StorageSpecification {
          */
         public abstract List<String> sortFilesByName(String path);
 
-        /**
-         * Sort files in a exact directory filter by creation time.
-         * @param path The name of the directory in which you are searching.
-         */
-        public abstract List<String> sortFilesByCreationTime(String path);
 
-        /**
-         * Sort files in a exact directory filter by modification time.
-         * @param path The name of the directory in which you are searching.
-         */
-        public abstract List<String> sortFilesByModificationTime(String path);
 
         /**
          * View all files from storage.
@@ -203,9 +188,6 @@ public abstract class StorageSpecification {
 
 
 
-
-
-
         /**
          * View files in a exact directory.
          * @param path The path of the directory where you want to put all created directories.
@@ -219,22 +201,6 @@ public abstract class StorageSpecification {
          * @param name The name of files you want to create.
          */
         public abstract void createFileByPattern(String name,String path);
-
-
-
-        /**
-         * Create numbers of folders with default name Folder1,Folder2... .
-         * @param name The name of the directory where you want to put all created directories.
-         * @param number The number of the directories you want to create.
-         */
-        public abstract void createMoreFoldersDrive(int number,String name);
-
-        /**
-         * Create numbers of files with default name File1,File2... .
-         * @param name The path of the directory where you want to put all created directories.
-         * @param number The number of the files you want to create.
-         */
-        public abstract void createMoreFilesDrive(int number,String name);
 
 
 
